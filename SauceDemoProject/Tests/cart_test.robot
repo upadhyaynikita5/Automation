@@ -1,26 +1,24 @@
 *** Settings ***
-Resource    ../Resources/browser_keyword.robot
-Resource    ../Resources/variables.robot
-Resource    ../Pages/InventoryPage.robot
-Resource    ../Pages/Loginpage.robot
+Library    SeleniumLibrary
+Resource   ../Pages/InventoryPage.robot
 
-Suite Setup       Open SauceDemo
-Suite Teardown    Close Browser Session
+Test Setup     Open Browser    https://www.saucedemo.com/    chrome
+Test Teardown  Close Browser
 
-*** Test Cases ***
 *** Test Cases ***
 Add To Cart Test
-    [Tags]    cart    positive
-    Enter Username    ${VALID_USERNAME}
-    Enter Password    ${VALID_PASSWORD}
-    Click Login Button
+    Input Text    id=user-name    standard_user
+    Input Text    id=password     secret_sauce
+    Click Button  id=login-button
     Verify Inventory Page Loaded
-    Add First Product To Cart
-    Open Cart
+    Add Backpack To Cart
+    Verify Item Added To Cart
 
 Remove From Cart Test
-    [Tags]    cart    negative
-
-    Remove First Product From Cart
-    Open Cart
-
+    Input Text    id=user-name    standard_user
+    Input Text    id=password     secret_sauce
+    Click Button  id=login-button
+    Verify Inventory Page Loaded
+    Add Backpack To Cart
+    Remove Backpack From Cart
+    Verify Cart Is Empty

@@ -1,10 +1,10 @@
 *** Settings ***
-Library  SeleniumLibrary
+Library    SeleniumLibrary
 
 *** Keywords ***
 Open SauceDemo
-    Open Browser    ${BASE_URL}     ${BROWSER}
-    maximize Browser Window
+    Open Browser    https://www.saucedemo.com/    chrome
+    Maximize Browser Window
 
-Close Browser Session
-    Close All Browsers
+Close SauceDemo
+    Close Browser
