@@ -6,7 +6,10 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch: 
-
+  
+  # Scheduled run (05:15 UTC, Monday–Friday)
+  schedule:
+    - cron: '15 5 * * 1-5'
 jobs:
   robot-tests:
     runs-on: macos-latest
